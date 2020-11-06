@@ -1,4 +1,5 @@
 from tkinter import *
+from tkinter import messagebox
 from db import Database
 root = Tk()
 
@@ -14,10 +15,13 @@ def populate_all():
 
 
 def add_item():
-    db.add(name_text.get(), class_text.get(),
-           email_text.get(), address_text.get())
-    clear_text()
-    populate_all()
+    if name_text.get() == "" or class_text.get() == '' or email_text.get() == '' or address_text.get() == '':
+        messagebox.showerror("Requires Fields", "All Field must be include.")
+    else:
+        db.add(name_text.get(), class_text.get(),
+               email_text.get(), address_text.get())
+        clear_text()
+        populate_all()
 
 
 def select_item(event):
